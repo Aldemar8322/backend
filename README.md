@@ -2,7 +2,7 @@
 
 ## **Cuarto proyecto entregable**
 
-## AUTOR: *Aldemar Torres*
+### AUTOR: *Aldemar Torres*
 
 ### PASOS PARA LA REALIZACION DEL PROYECTO
 
