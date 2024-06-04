@@ -1,10 +1,14 @@
-import { Schema, model } from "mongoose";
+import { Schema, Types, model } from "mongoose";
 
 const esquemaUsuario = new Schema(
     {
-        nombre: {type: String, required: true},
-        correoElectronico: {type: String, required: true},
-        contrasenia: {type: String, required: true},
+        paisSede:{type: String, required: true},
+        fechaInicio:{type: Date, required: true},
+        campeon:{type: String, required: true},
+        suramericano:{type: Boolean, required: true},
+        mejorJugador:{type: String, required: true},
+        goleador:{type: String, required: true},
+        golesAnotados:{type: Number, required: true},
 })
 
 export default model("Usuario", esquemaUsuario);
