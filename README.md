@@ -2,7 +2,9 @@
 
 ## **Cuarto proyecto entregable**
 
-### AUTOR: *Aldemar Torres*
+### Autor: *ALDEMAR TORRES R*
+
+#### Tema del proyecto: Datos de mundiales de futbol FIFA
 
 ### PASOS PARA LA REALIZACION DEL PROYECTO
 
