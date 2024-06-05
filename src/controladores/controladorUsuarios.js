@@ -7,15 +7,15 @@ const ControladorUsuarios = {
         const usuarioCreado = await nuevoUsuario.save();
         if (usuarioCreado._id) {
           respuesta.json({
-            resultado: "bien",
-            mensaje: "usuario creado",
+            resultado: "exitoso",
+            mensaje: "dato creado",
             datos: usuarioCreado._id
           });
         }
       } catch (error) {
         respuesta.json({
-          resultado: "mal",
-          mensaje: "ocurrió un error al crear usuario",
+          resultado: "falla",
+          mensaje: "ocurrió un error al crear dato",
           datos: error
         });
       }
@@ -25,15 +25,15 @@ const ControladorUsuarios = {
           const usuarioEncontrado = await ModeloUsuario.findById(solicitud.params.id)
           if (usuarioEncontrado._id) {
             respuesta.json({
-              resultado: "bien",
-              mensaje: "usuario leído",
+              resultado: "exitoso",
+              mensaje: "dato leído",
               datos: usuarioEncontrado
             });
           }          
         } catch (error) {
         respuesta.json({
-          resultado: "mal",
-          mensaje: "ocurrió un error al leer usuario",
+          resultado: "falla",
+          mensaje: "ocurrió un error al leer dato",
           datos: error
         });
         }
@@ -42,14 +42,14 @@ const ControladorUsuarios = {
         try {
           const todosLosUsuarios = await ModeloUsuario.find();
           respuesta.json({
-            resultado: "bien",
-            mensaje: "usuarios leídos",
+            resultado: "exitoso",
+            mensaje: "datos leídos",
             datos: todosLosUsuarios
           });
         } catch (error) {
           respuesta.json({
-            resultado: "mal",
-            mensaje: "ocurrió un error al leer todos los usuarios",
+            resultado: "falla",
+            mensaje: "ocurrió un error al leer todos los datos",
             datos: error
           });
         }
@@ -62,15 +62,15 @@ const ControladorUsuarios = {
           );
           if (usuarioActualizado._id) {
             respuesta.json({
-              resultado: "bien",
-              mensaje: "usuario actualizado",
+              resultado: "exitoso",
+              mensaje: "dato actualizado",
               datos: usuarioActualizado._id,
             });
           }
         } catch (error) {
           respuesta.json({
-            resultado: "mal",
-            mensaje: "Ocurrio un error al actualizar usuario",
+            resultado: "falla",
+            mensaje: "Ocurrio un error al actualizar dato",
             datos: error
         });
       }
@@ -80,15 +80,15 @@ const ControladorUsuarios = {
           const usuarioEliminado = await ModeloUsuario.findByIdAndDelete(solicitud.params.id)
           if (usuarioEliminado._id) {
             respuesta.json({
-              resultado: "bien",
-              mensaje: "usuario eliminado",
+              resultado: "exitoso",
+              mensaje: "dato eliminado",
               datos: null
             });
           }          
         } catch (error) {
         respuesta.json({
-          resultado: "mal",
-          mensaje: "ocurrió un error al eliminar usuario",
+          resultado: "falla",
+          mensaje: "ocurrió un error al eliminar dato",
           datos: error
         });
         }
