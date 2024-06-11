@@ -1,10 +1,17 @@
+import bcrypt from 'bcryptjs';
 import ModeloUsuario from "../modelos/modeloUsuario.js";
 
 const ControladorUsuarios = {
     crearUsuario: async (solicitud, respuesta) => {
       try {
-        const nuevoUsuario = new ModeloUsuario(solicitud.body);
-        const usuarioCreado = await nuevoUsuario.save();
+        const { nombre, correoElectronico, contrasenia }= solicitud.body;
+        const contraseniaProtegida = await bcrypt.hash(contrasenia, 10);
+        const nuevoUsuario = new ModeloUsuario({
+          nombre,
+          correoElectronico,
+          contrasenia: contraseniaProtegida,
+        });
+        const usuarioCreado =await nuevoUsuario.save();
         if (usuarioCreado._id) {
           respuesta.json({
             resultado: "exitoso",
@@ -22,7 +29,9 @@ const ControladorUsuarios = {
       },
       leerUsuario: async (solicitud, respuesta) => {
         try {
-          const usuarioEncontrado = await ModeloUsuario.findById(solicitud.params.id)
+          const usuarioEncontrado = await ModeloUsuario.findById
+          (solicitud.params.id
+          );
           if (usuarioEncontrado._id) {
             respuesta.json({
               resultado: "exitoso",
@@ -50,7 +59,7 @@ const ControladorUsuarios = {
           respuesta.json({
             resultado: "falla",
             mensaje: "ocurrió un error al leer todos los datos",
-            datos: error
+            datos: error,
           });
         }
       },
@@ -77,7 +86,7 @@ const ControladorUsuarios = {
     },
       eliminarUsuario: async (solicitud, respuesta) => {
         try {
-          const usuarioEliminado = await ModeloUsuario.findByIdAndDelete(solicitud.params.id)
+          const usuarioEliminado = await ModeloUsuario.findByIdAndDelete(solicitud.params.id);
           if (usuarioEliminado._id) {
             respuesta.json({
               resultado: "exitoso",
@@ -92,7 +101,7 @@ const ControladorUsuarios = {
           datos: error
         });
         }
-      }
-}
+      },
+};
 
 export default ControladorUsuarios;
