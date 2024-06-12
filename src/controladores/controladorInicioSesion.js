@@ -1,5 +1,5 @@
 import bcryptjs from 'bcryptjs';
-import { generarToken } from '../ayudas/funciones.js';
+import { generarToken, verificarToken } from '../ayudas/funciones.js';
 import ModeloUsuario from "../modelos/modeloUsuario.js";
 
 const controladorInicioSesion = {
@@ -39,6 +39,32 @@ const controladorInicioSesion = {
             });
         }
     },
+
+    validarToken: async (solicitud, respuesta) => {
+        try {
+          const token = solicitud.params.token;
+          const decodificado = await verificarToken(token);
+          if (decodificado.id) {
+            respuesta.json({
+              resultado: 'bien',
+              mensaje: 'token válido',
+              datos: decodificado,
+            });
+          } else {
+            respuesta.json({
+              resultado: 'mal',
+              mensaje: 'token no válido',
+              datos: null,
+            });
+          }
+        } catch (error) {
+          respuesta.json({
+            resultado: 'mal',
+            mensaje: 'ocurrió un error al validar token',
+            datos: error,
+          });
+        }
+      },
 };
 
 export default controladorInicioSesion;
