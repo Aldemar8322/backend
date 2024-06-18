@@ -3,6 +3,7 @@ import cors from 'cors';
 import morgan from "morgan";
 import enrutadorUsuarios from "./rutas/rutaUsuarios.js";
 import enrutadorInicioSesion from "./rutas/rutaInicioSesion.js";
+import enrutadorDesayunos from "./rutas/rutaDesayunos.js";
 
 const servidor = express();
 
@@ -11,6 +12,7 @@ servidor.use(morgan("dev"));
 servidor.use(express.json());
 servidor.use("/usuarios", enrutadorUsuarios);
 servidor.use("/inicio-sesion", enrutadorInicioSesion);
+servidor.use("/desayunos", enrutadorDesayunos);
 
 servidor.get('/', (solicitud, respuesta) => {
   respuesta.status(404).send("No encontrado");
